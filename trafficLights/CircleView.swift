@@ -14,7 +14,7 @@ struct CircleView: View {
     
     var body: some View {
         Circle()
-            .frame(width: 150, height: 150, alignment: .center)
+            .frame(width: 130, height: 130, alignment: .center)
             .foregroundColor(colorOfCircle)
             //.opacity(opacityValue)
     }

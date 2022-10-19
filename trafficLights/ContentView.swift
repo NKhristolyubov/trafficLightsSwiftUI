@@ -21,55 +21,64 @@ struct ContentView: View {
     @State var greenLightOpacity: Double = 0.2
     
     @State var currentLight = colorsOfCircle.red
-
+    
     
     var body: some View {
-        VStack {
-            CircleView(colorOfCircle: .red)
-                .opacity(redLightOpacity)
-            CircleView(colorOfCircle: .yellow)
-                .opacity(yellowLightOpacity)
-            CircleView(colorOfCircle: .green)
-                .opacity(greenLightOpacity)
-            Button(
-                action: {
-                    if buttonText == "Start" {
-                        buttonText = "Next"
-                    }
-                    switch currentLight {
-                    case .red:
-                        greenLightOpacity = lightIsOff
-                        redLightOpacity = lightIsOn
-                        currentLight = colorsOfCircle.yellow
-                    case .yellow:
-                        redLightOpacity = lightIsOff
-                        yellowLightOpacity = lightIsOn
-                        currentLight = colorsOfCircle.green
-                    case .green:
-                        yellowLightOpacity = lightIsOff
-                        greenLightOpacity = lightIsOn
-                        currentLight = colorsOfCircle.red
-                    }
-                },
-                label: {
-                    Text(buttonText)
-                        .font(.title)
-                        .foregroundColor(.black)
-                        .bold()
-                        .frame(width: 250, height: 70)
+            VStack {
+                VStack {
+                    CircleView(colorOfCircle: .red)
+                        .opacity(redLightOpacity)
                         .padding()
-                        .border(.black, width: 10)
+                    CircleView(colorOfCircle: .yellow)
+                        .opacity(yellowLightOpacity)
+                        .padding()
+                    CircleView(colorOfCircle: .green)
+                        .opacity(greenLightOpacity)
+                        .padding()
                 }
-            )
+                .padding()
+                .border(.black, width: 10)
+                Button(
+                    action: {
+                        if buttonText == "Start" {
+                            buttonText = "Next"
+                        }
+                        switch currentLight {
+                        case .red:
+                            greenLightOpacity = lightIsOff
+                            redLightOpacity = lightIsOn
+                            currentLight = colorsOfCircle.yellow
+                        case .yellow:
+                            redLightOpacity = lightIsOff
+                            yellowLightOpacity = lightIsOn
+                            currentLight = colorsOfCircle.green
+                        case .green:
+                            yellowLightOpacity = lightIsOff
+                            greenLightOpacity = lightIsOn
+                            currentLight = colorsOfCircle.red
+                        }
+                    },
+                    label: {
+                        Text(buttonText)
+                            .font(.title)
+                            .foregroundColor(.black)
+                            .bold()
+                            .padding()
+                    }
+                )
+                .frame(width: 250, height: 70)
+                .cornerRadius(50)
+                .border(.black, width: 10)
+                .padding()
+                
+            }
             .padding(50)
-            
         }
-        .padding(50)
     }
-}
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
+    }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
